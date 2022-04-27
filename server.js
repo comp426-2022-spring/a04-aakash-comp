@@ -63,6 +63,10 @@ if(args.debug == true){
       console.log("Not accessible")
     }
   })
+
+  app.get('/app/error', (req, res) => {
+    throw new Error("Error test successful.")
+  })
 }
 
 if(args.log == true){
