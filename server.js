@@ -51,6 +51,20 @@ if (args.help || args.h) {
   process.exit(0)
 }
 
+if(args.debug == true){
+
+  app.get('/app/log/access', (req, res) =>{
+    try{
+      const stmt = logdb.prepare('SELECT * FROM accesslog').all()
+      res.status(200).json(stmt)
+    }
+    catch{
+      console.error(e)
+      console.log("Not accessible")
+    }
+  })
+}
+
 if(args.log == true){
   const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a'})
   app.use(morgan('combined', { stream: WRITESTREAM}))
