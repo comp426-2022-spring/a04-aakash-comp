@@ -10,7 +10,7 @@ const logdb = require('./database')
 
 const fs = require("fs")
 
-const help = (`
+const help_message = (`
 server.js [options]
 
 --port	Set the port number for the server to listen on. Must be an integer
@@ -36,7 +36,7 @@ args['help']
 args['debug']
 args['log']
 
-const port = args.port || process.env.PORT || 5000
+const port = args.port || process.env.PORT || 5555
 
 
 //start server
@@ -47,7 +47,7 @@ const server = app.listen(port, () => {
 //a04 starts here
 
 if (args.help || args.h) {
-  console.log(help) 
+  console.log(help_message) 
   process.exit(0)
 }
 
@@ -81,8 +81,8 @@ if(args.debug == true){
 
   app.get('/app/log/access', (req, res) =>{
     try{
-      const logging = logdb.prepare('SELECT * FROM access').all()
-      res.status(200).json(logging)
+      const stmt = logdb.prepare('SELECT * FROM access').all()
+      res.status(200).json(stmt)
     }
     catch{
       console.error(e)
