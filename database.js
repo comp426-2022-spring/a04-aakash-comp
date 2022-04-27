@@ -11,7 +11,7 @@ if (row === undefined) {
     console.log('Log database missing. Create log database')
     
     const sqlInit = `
-        CREATE TABLE access ( id INTEGER PRIMARY KEY, remote-addr VARCHAR, remote-user VARCHAR, datetime VARCHAR, method VARCHAR, url VARCHAR, http-version NUMERIC, status INTEGER, content-length NUMERIC)`
+        CREATE TABLE access ( id INTEGER PRIMARY KEY, remoteaddr VARCHAR, remoteuser VARCHAR, datetime VARCHAR, method VARCHAR, url VARCHAR, httpversion NUMERIC, status INTEGER, referer VARCHAR, useragent VARCHAR)`
     
     logdb.exec(sqlInit)
 }
